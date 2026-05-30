@@ -46,26 +46,29 @@ const Interests = () => {
     }
   ];
 
+  const getIconBg = (color) => {
+    if (color === '#3B82F6') return 'rgba(59, 130, 246, 0.08)';
+    if (color === '#22C55E') return 'rgba(34, 197, 94, 0.08)';
+    return 'rgba(16, 185, 129, 0.08)';
+  };
+
   return (
-    <section id="interests" className="section-padding" style={{ background: '#0B1220', position: 'relative' }}>
-      {/* Separator line */}
+    <section id="interests" className="section-padding" style={{ background: 'var(--section-dark)', position: 'relative' }}>
+      {/* Separator */}
       <div
         style={{
           position: 'absolute',
-          top: 0,
-          left: '10%',
-          width: '80%',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent)'
+          top: 0, left: '10%', width: '80%', height: '1px',
+          background: 'var(--separator)'
         }}
       />
 
       <div className="container">
-        
+
         {/* Section Heading */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Personal Interests</span>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', color: '#fff', marginTop: '0.5rem' }}>Beyond the IDE</h2>
+          <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', color: 'var(--text-primary)', marginTop: '0.5rem' }}>Beyond the IDE</h2>
           <div style={{ width: '40px', height: '3px', background: 'var(--gradient-primary)', margin: '1rem auto 0 auto', borderRadius: '2px' }} />
         </div>
 
@@ -86,15 +89,13 @@ const Interests = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
-                  background: 'rgba(17, 24, 39, 0.45)',
-                  border: '1px solid rgba(255, 255, 255, 0.04)',
                   cursor: 'default'
                 }}
               >
-                {/* Icon wrapper */}
+                {/* Icon */}
                 <div
                   style={{
-                    background: `rgba(${interest.color === '#10B981' ? '16, 185, 129' : interest.color === '#3B82F6' ? '59, 130, 246' : '34, 197, 94'}, 0.08)`,
+                    background: getIconBg(interest.color),
                     color: interest.color,
                     padding: '0.6rem',
                     borderRadius: '8px',
@@ -104,15 +105,15 @@ const Interests = () => {
                     justifyContent: 'center'
                   }}
                 >
-                  <IconComp size={22} />
+                  <IconComp size={21} />
                 </div>
 
                 {/* Details */}
                 <div>
-                  <h4 style={{ fontSize: '1.15rem', color: '#fff', fontWeight: 600, fontFamily: 'var(--font-display)', marginBottom: '0.5rem' }}>
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: 600, fontFamily: 'var(--font-display)', marginBottom: '0.5rem' }}>
                     {interest.name}
                   </h4>
-                  <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
                     {interest.desc}
                   </p>
                 </div>

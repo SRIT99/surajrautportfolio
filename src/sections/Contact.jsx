@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
+/* ==========================================
+   CUSTOM INLINE SVG COMPONENTS
+   ========================================== */
 const GithubIcon = ({ size = 18, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
 );
@@ -14,6 +17,9 @@ const InstagramIcon = ({ size = 18, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
 );
 
+/* ==========================================
+   CONTACT COMPONENT
+   ========================================== */
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -24,7 +30,7 @@ const Contact = () => {
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
   const socialLinks = [
-    { name: 'GitHub', Icon: GithubIcon, href: 'https://github.com/SRIT99', color: '#fff' },
+    { name: 'GitHub', Icon: GithubIcon, href: 'https://github.com/SRIT99', color: 'var(--text-primary)' },
     { name: 'Facebook', Icon: FacebookIcon, href: 'https://facebook.com/surajrautdharan', color: '#1877F2' },
     { name: 'Instagram', Icon: InstagramIcon, href: 'https://instagram.com/igsuraj.fx', color: '#E4405F' }
   ];
@@ -51,8 +57,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding" style={{ background: '#0F172A', position: 'relative' }}>
-      {/* Separator line */}
+    <section id="contact" className="section-padding contact-section-bg" style={{ position: 'relative' }}>
+      {/* Separator line mapped to variables */}
       <div
         style={{
           position: 'absolute',
@@ -60,35 +66,35 @@ const Contact = () => {
           left: '10%',
           width: '80%',
           height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent)'
+          background: 'var(--separator)'
         }}
       />
 
       <div className="container">
-        
+
         {/* Section Heading */}
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Get in Touch</span>
-          <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', color: '#fff', marginTop: '0.5rem' }}>Contact Me</h2>
+          <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', color: 'var(--text-primary)', marginTop: '0.5rem', fontWeight: 700 }}>Contact Me</h2>
           <div style={{ width: '40px', height: '3px', background: 'var(--gradient-primary)', margin: '1rem auto 0 auto', borderRadius: '2px' }} />
         </div>
 
         {/* Content Layout Grid */}
-        <div className="grid-2" style={{ gap: '4rem' }}>
-          
+        <div className="portfolio-contact-grid" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
+
           {/* Left Column: Direct info & CTA */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
           >
-            <h3 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-display)', color: '#fff', marginBottom: '1.25rem', lineHeight: '1.3' }}>
+            <h3 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-display)', color: 'var(--text-primary)', marginBottom: '1.25rem', lineHeight: '1.3', fontWeight: 600 }}>
               Interested in working together? <br />
               <span className="gradient-text">Let's build something meaningful.</span>
             </h3>
-            
+
             <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '2.5rem', lineHeight: '1.7' }}>
               Whether you are preparing a software internship, have a freelance platform concept to construct, or want to integrate robust database backends, I am ready to collaborate. Feel free to reach out directly.
             </p>
@@ -96,24 +102,24 @@ const Contact = () => {
             {/* Direct details */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ background: 'rgba(16, 185, 129, 0.08)', color: 'var(--primary)', padding: '0.75rem', borderRadius: '10px' }}>
+                <div className="contact-icon-wrapper" style={{ background: 'rgba(16, 185, 129, 0.08)', color: 'var(--primary)', padding: '0.75rem', borderRadius: '10px', display: 'flex' }}>
                   <Mail size={20} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Email Me</div>
-                  <a href="mailto:Surajworkspace12@gmail.com" style={{ fontSize: '1rem', color: '#fff', fontWeight: 500 }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Email Me</div>
+                  <a href="mailto:Surajworkspace12@gmail.com" style={{ fontSize: '1rem', color: 'var(--text-primary)', fontWeight: 500, textDecoration: 'none' }} className="contact-link">
                     Surajworkspace12@gmail.com
                   </a>
                 </div>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ background: 'rgba(59, 130, 246, 0.08)', color: 'var(--blue)', padding: '0.75rem', borderRadius: '10px' }}>
+                <div className="contact-icon-wrapper" style={{ background: 'rgba(59, 130, 246, 0.08)', color: 'var(--blue, #3B82F6)', padding: '0.75rem', borderRadius: '10px', display: 'flex' }}>
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Location</div>
-                  <div style={{ fontSize: '1rem', color: '#fff', fontWeight: 500 }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Location</div>
+                  <div style={{ fontSize: '1rem', color: 'var(--text-primary)', fontWeight: 500 }}>
                     Damak, Jhapa, Nepal
                   </div>
                 </div>
@@ -122,7 +128,7 @@ const Contact = () => {
 
             {/* Social icons row */}
             <div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem', fontWeight: 500 }}>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem', fontWeight: 500, letterSpacing: '0.05em' }}>
                 Social Connections
               </div>
               <div style={{ display: 'flex', gap: '1rem' }}>
@@ -134,25 +140,30 @@ const Contact = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="glass-panel"
+                      className="contact-social-card"
                       style={{
-                        width: '42px',
-                        height: '42px',
+                        width: '44px',
+                        height: '44px',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         color: 'var(--text-muted)',
-                        background: 'rgba(17, 24, 39, 0.45)',
-                        border: '1px solid rgba(255, 255, 255, 0.04)'
+                        border: '1px solid var(--separator)',
+                        background: 'var(--social-btn-bg)',
+                        transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)'
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = social.color;
-                        e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+                        e.currentTarget.style.borderColor = social.color;
+                        e.currentTarget.style.transform = 'translateY(-3px)';
+                        e.currentTarget.style.boxShadow = `0 4px 12px ${social.color}20`;
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.color = 'var(--text-muted)';
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.04)';
+                        e.currentTarget.style.borderColor = 'var(--separator)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
                       }}
                       title={social.name}
                     >
@@ -166,26 +177,28 @@ const Contact = () => {
 
           {/* Right Column: Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             <form
               onSubmit={handleSubmit}
-              className="glass-panel"
+              className="glass-card contact-form-card"
               style={{
-                padding: '2.5rem',
+                padding: 'clamp(1.5rem, 5vw, 2.5rem)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1.25rem',
-                background: 'rgba(17, 24, 39, 0.45)',
-                border: '1px solid rgba(255, 255, 255, 0.04)'
+                border: '1px solid var(--separator)',
+                borderRadius: '16px',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)'
               }}
             >
               {/* Form Input fields */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 500 }}>Name</label>
+                <label style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 500 }}>Name</label>
                 <input
                   type="text"
                   name="name"
@@ -194,11 +207,11 @@ const Contact = () => {
                   placeholder="Your Name"
                   required
                   style={{
-                    background: 'rgba(11, 18, 32, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: 'var(--input-bg)',
+                    border: '1px solid var(--separator)',
                     borderRadius: '8px',
                     padding: '0.75rem 1rem',
-                    color: '#fff',
+                    color: 'var(--text-primary)',
                     outline: 'none',
                     transition: 'all 0.2s'
                   }}
@@ -207,7 +220,7 @@ const Contact = () => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 500 }}>Email</label>
+                <label style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 500 }}>Email</label>
                 <input
                   type="email"
                   name="email"
@@ -216,11 +229,11 @@ const Contact = () => {
                   placeholder="your.email@example.com"
                   required
                   style={{
-                    background: 'rgba(11, 18, 32, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: 'var(--input-bg)',
+                    border: '1px solid var(--separator)',
                     borderRadius: '8px',
                     padding: '0.75rem 1rem',
-                    color: '#fff',
+                    color: 'var(--text-primary)',
                     outline: 'none',
                     transition: 'all 0.2s'
                   }}
@@ -229,7 +242,7 @@ const Contact = () => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 500 }}>Subject</label>
+                <label style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 500 }}>Subject</label>
                 <input
                   type="text"
                   name="subject"
@@ -237,11 +250,11 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Project inquiry / collaboration request"
                   style={{
-                    background: 'rgba(11, 18, 32, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: 'var(--input-bg)',
+                    border: '1px solid var(--separator)',
                     borderRadius: '8px',
                     padding: '0.75rem 1rem',
-                    color: '#fff',
+                    color: 'var(--text-primary)',
                     outline: 'none',
                     transition: 'all 0.2s'
                   }}
@@ -250,7 +263,7 @@ const Contact = () => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 500 }}>Message</label>
+                <label style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 500 }}>Message</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -259,11 +272,11 @@ const Contact = () => {
                   rows={4}
                   required
                   style={{
-                    background: 'rgba(11, 18, 32, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: 'var(--input-bg)',
+                    border: '1px solid var(--separator)',
                     borderRadius: '8px',
                     padding: '0.75rem 1rem',
-                    color: '#fff',
+                    color: 'var(--text-primary)',
                     outline: 'none',
                     transition: 'all 0.2s',
                     resize: 'none'
@@ -294,12 +307,15 @@ const Contact = () => {
                 style={{
                   marginTop: '0.5rem',
                   display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '0.85rem'
+                  gap: '0.5rem',
+                  padding: '0.85rem',
+                  cursor: status === 'sending' ? 'not-allowed' : 'pointer'
                 }}
               >
                 {status === 'sending' ? (
-                  <div className="spinner" style={{ border: '2px solid rgba(255,255,255,0.2)', borderTop: '2px solid #fff', borderRadius: '50%', width: '18px', height: '18px', animation: 'spin 1s linear infinite' }} />
+                  <div className="spinner" style={{ border: '2px solid rgba(255,255,255,0.2)', borderTop: '2px solid currentColor', borderRadius: '50%', width: '18px', height: '18px', animation: 'spin 1s linear infinite' }} />
                 ) : (
                   <>
                     <Send size={16} />
@@ -314,9 +330,71 @@ const Contact = () => {
       </div>
 
       <style>{`
+        /* --- Responsive Structural Layout Adjustments --- */
+        .portfolio-contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        
+        @media (max-width: 991px) {
+          .portfolio-contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
+          }
+        }
+
+        /* --- Theme Protection & Design Rules --- */
+        .contact-section-bg {
+          background: var(--section-mid, var(--section-dark)) !important;
+        }
+
+        /* Default Dark Mode Card/Button Elevations */
+        .contact-form-card {
+          background: rgba(255, 255, 255, 0.03) !important;
+          box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+          --input-bg: rgba(0, 0, 0, 0.2);
+        }
+        
+        #contact {
+          --social-btn-bg: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Light Mode Layout Overrides */
+        .light #contact, [data-theme="light"] #contact {
+          --text-primary: #0F172A;
+          --text-muted: #64748B;
+          --separator: rgba(15, 23, 42, 0.08);
+          --social-btn-bg: #F8FAFC;
+        }
+
+        .light .contact-form-card, [data-theme="light"] .contact-form-card {
+          background: #ffffff !important;
+          box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08) !important;
+          --input-bg: #F8FAFC;
+        }
+
+        .light .contact-icon-wrapper, [data-theme="light"] .contact-icon-wrapper {
+          background: rgba(16, 185, 129, 0.12) !important;
+        }
+
+        /* --- Global Interaction Rules --- */
         .form-input:focus {
-          border-color: rgba(16, 185, 129, 0.3) !important;
-          box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+          border-color: var(--primary) !important;
+          box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+        }
+        
+        .light .form-input:focus, [data-theme="light"] .form-input:focus {
+          background: #ffffff !important;
+        }
+        
+        .contact-link:hover {
+          color: var(--primary) !important;
+          text-decoration: underline !important;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
       `}</style>
     </section>
