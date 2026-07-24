@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 /* ==========================================
@@ -21,13 +22,16 @@ const InstagramIcon = ({ size = 18, ...props }) => (
    CONTACT COMPONENT
    ========================================== */
 const Contact = () => {
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    company: '' // honeypot field - real users never fill this in
   });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('');
 
   const socialLinks = [
     { name: 'GitHub', Icon: GithubIcon, href: 'https://github.com/SRIT99', color: 'var(--text-primary)' },
@@ -40,20 +44,45 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot check - if this hidden field got filled, it's a bot. Silently "succeed" without sending.
+    if (formData.company) {
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '', company: '' });
+      return;
+    }
+
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('error');
+      setErrorMsg('Please fill out all required fields.');
       return;
     }
 
     setStatus('sending');
+    setErrorMsg('');
 
-    // Simulate API Submission
-    setTimeout(() => {
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || '(No subject)',
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
       setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
+      setFormData({ name: '', email: '', subject: '', message: '', company: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setStatus('error');
+      setErrorMsg('Something went wrong sending your message. Please try again or email me directly.');
+    }
   };
 
   return (
@@ -183,6 +212,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               className="glass-card contact-form-card"
               style={{
@@ -196,6 +226,18 @@ const Contact = () => {
                 WebkitBackdropFilter: 'blur(10px)'
               }}
             >
+              {/* Honeypot field - hidden from real users via CSS, bots tend to fill every field */}
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                tabIndex="-1"
+                autoComplete="off"
+                style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                aria-hidden="true"
+              />
+
               {/* Form Input fields */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 <label style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 500 }}>Name</label>
@@ -289,7 +331,7 @@ const Contact = () => {
               {status === 'error' && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#EF4444', fontSize: '0.85rem', background: 'rgba(239, 68, 68, 0.08)', padding: '0.5rem 1rem', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.15)' }}>
                   <AlertCircle size={16} />
-                  Please fill out all required fields.
+                  {errorMsg || 'Please fill out all required fields.'}
                 </div>
               )}
 

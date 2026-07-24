@@ -73,7 +73,7 @@ const Projects = () => {
       />
 
       <div className="container">
-        
+
         {/* Section Heading */}
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>My Work</span>
@@ -259,7 +259,7 @@ const Projects = () => {
                       <ExternalLink size={15} />
                       Live Demo
                     </a>
-                    
+
                     <a
                       href={project.githubUrl}
                       target="_blank"
