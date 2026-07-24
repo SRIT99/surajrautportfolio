@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 
@@ -25,8 +26,9 @@ const InstagramIcon = ({ size = 17 }) => (
 );
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', company: '' });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('');
 
   const socials = [
     {
@@ -56,17 +58,45 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatus('error');
+
+    // Honeypot check — bots tend to fill every field, real users never see this one
+    if (formData.company) {
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '', company: '' });
       return;
     }
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus('error');
+      setErrorMsg('Please fill out all required fields.');
+      return;
+    }
+
     setStatus('sending');
-    setTimeout(() => {
+    setErrorMsg('');
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || '(No subject)',
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
       setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
+      setFormData({ name: '', email: '', subject: '', message: '', company: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setStatus('error');
+      setErrorMsg("Something went wrong sending your message. Please try again or email me directly.");
+    }
   };
 
   const fadeUp = (delay = 0) => ({
@@ -195,6 +225,18 @@ const Contact = () => {
                   Send a message
                 </h3>
 
+                {/* Honeypot field — hidden from real users, bots tend to fill every input */}
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  tabIndex="-1"
+                  autoComplete="off"
+                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                  aria-hidden="true"
+                />
+
                 <div className="form-field">
                   <label className="form-label">Name *</label>
                   <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" required className="form-input" />
@@ -218,7 +260,7 @@ const Contact = () => {
                 {status === 'error' && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--error)', fontSize: '0.85rem', background: 'rgba(224,85,85,0.08)', padding: '0.6rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(224,85,85,0.2)' }}>
                     <AlertCircle size={15} />
-                    Please fill out all required fields.
+                    {errorMsg || 'Please fill out all required fields.'}
                   </div>
                 )}
 
