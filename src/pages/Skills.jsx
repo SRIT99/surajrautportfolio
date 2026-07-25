@@ -15,6 +15,11 @@ const Skills = () => {
         'CSS3',
         'Tailwind CSS',
         'Git & GitHub',
+        'Vite',
+        'React Router',
+        'Context API',
+        'Framer Motion',
+        'Postman',
         'Responsive Design',
         'REST API consumption',
       ]
@@ -25,12 +30,7 @@ const Skills = () => {
       note: 'Actively studying these — mid-level, getting better every week.',
       skills: [
         'Redux Toolkit',
-        'Context API',
-        'React Router',
         'TypeScript (basics)',
-        'Framer Motion',
-        'Vite',
-        'Postman',
       ]
     },
     {
