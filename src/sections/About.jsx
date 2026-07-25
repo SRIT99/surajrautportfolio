@@ -6,7 +6,7 @@ const About = () => {
   const stats = [
     {
       icon: BookOpen,
-      title: '7th Semester',
+      title: '8th Semester',
       desc: 'BSc CSIT Student',
       detail: 'Central Campus of Technology',
       color: '#10B981'
@@ -58,7 +58,7 @@ const About = () => {
 
         {/* Content Layout Grid */}
         <div className="grid-2" style={{ alignItems: 'center' }}>
-          
+
           {/* Bio Text */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,15 +69,15 @@ const About = () => {
             <h3 style={{ fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', fontFamily: 'var(--font-display)', color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
               Bridging robust backend logic with interactive frontend design.
             </h3>
-            
+
             <p style={{ fontSize: '1rem', lineHeight: '1.75', marginBottom: '1.25rem', color: 'var(--text-muted)' }}>
               I am a Full-Stack PERN Stack Developer and BSc CSIT student passionate about building modern web applications that solve real-world problems.
             </p>
-            
+
             <p style={{ fontSize: '1rem', lineHeight: '1.75', marginBottom: '1.25rem', color: 'var(--text-muted)' }}>
               My background combines software development, IT administration, leadership, and education, giving me strong technical and communication skills. I enjoy creating scalable backend systems, intuitive user interfaces, and efficient database solutions.
             </p>
-            
+
             <p style={{ fontSize: '1rem', lineHeight: '1.75', color: 'var(--text-muted)' }}>
               I continuously improve my skills through practical projects, self-learning, and hands-on development experience.
             </p>
