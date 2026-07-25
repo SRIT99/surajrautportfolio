@@ -6,12 +6,12 @@ import PageLayout from '../components/PageLayout';
 
 const About = () => {
   const stats = [
-    { label: 'Current semester',  value: '7th — BSc CSIT' },
-    { label: 'University',        value: 'Central Campus of Tech, Dharan' },
-    { label: 'Based in',          value: 'Damak, Jhapa / Dharan, Nepal' },
-    { label: 'Focus',             value: 'Frontend (React, Tailwind, JS)' },
-    { label: 'Available for',     value: 'Internships & Freelance' },
-    { label: 'GPA (SEE)',         value: '3.55' },
+    { label: 'Current semester', value: '8th — BSc CSIT' },
+    { label: 'University', value: 'Central Campus of Tech, Dharan' },
+    { label: 'Based in', value: 'Damak, Jhapa / Dharan, Nepal' },
+    { label: 'Focus', value: 'Frontend (React, Tailwind, JS)' },
+    { label: 'Available for', value: 'Internships & Freelance' },
+    { label: 'GPA (SEE)', value: '3.55' },
   ];
 
   const fadeUp = (delay = 0) => ({
@@ -134,9 +134,9 @@ const About = () => {
             <div className="label" style={{ marginBottom: '1.5rem' }}>What I care about</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }} className="values-grid">
               {[
-                { icon: Star,          title: 'Honest code',    desc: 'I show real skill levels. No fake 90% React bars — just what I actually know and what I\'m learning.' },
+                { icon: Star, title: 'Honest code', desc: 'I show real skill levels. No fake 90% React bars — just what I actually know and what I\'m learning.' },
                 { icon: GraduationCap, title: 'Always learning', desc: 'Currently deepening Redux, backend architecture, and system design concepts. Open to mentorship.' },
-                { icon: Heart,         title: 'Good UX first',  desc: 'Interfaces should feel good, load fast, and make sense. Design and developer concerns are the same concern.' },
+                { icon: Heart, title: 'Good UX first', desc: 'Interfaces should feel good, load fast, and make sense. Design and developer concerns are the same concern.' },
               ].map((v, i) => {
                 const Icon = v.icon;
                 return (

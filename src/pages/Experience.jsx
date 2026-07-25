@@ -126,7 +126,7 @@ const Experience = () => {
     {
       role: 'IT Incharge',
       company: 'Baigundhura English Boarding School',
-      period: '2024 – Present',
+      period: '2024 – 2025',
       type: 'work',
       points: [
         'IT infrastructure management & network supervision across campus',
@@ -138,7 +138,7 @@ const Experience = () => {
     {
       role: 'Mathematics & Science Teacher',
       company: 'Ideal English Boarding School',
-      period: '2022 – 2024',
+      period: '2025 – 2026',
       type: 'work',
       points: [
         'Taught mathematics and science to secondary-level students',
@@ -154,7 +154,7 @@ const Experience = () => {
       degree: 'BSc CSIT',
       full: 'Bachelor of Science in Computer Science & Information Technology',
       school: 'Central Campus of Technology, Dharan',
-      period: '7th Semester (Current)',
+      period: '8th Semester (Current)',
       detail: 'Tribhuvan University affiliated program. Focus on software engineering, algorithm design, database systems, and web development.'
     },
     {

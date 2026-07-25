@@ -65,8 +65,8 @@ const Home = () => {
               {/* Quick stats */}
               <div style={{ display: 'flex', gap: '2.5rem', marginTop: '3.5rem', flexWrap: 'wrap' }}>
                 {[
-                  { num: '2+',  label: 'Projects built' },
-                  { num: '7th', label: 'Sem, BSc CSIT' },
+                  { num: '2+', label: 'Projects built' },
+                  { num: '8th', label: 'Sem, BSc CSIT' },
                   { num: 'Open', label: 'To internships' },
                 ].map(s => (
                   <div key={s.label}>
