@@ -24,7 +24,7 @@ const About = () => {
   return (
     <PageLayout
       title="About — Suraj Raut | Frontend Developer, Damak Nepal"
-      description="Learn about Suraj Raut — a BSc CSIT student and frontend developer from Damak, Jhapa, Nepal. Focused on React.js, Tailwind CSS, and building real-world interfaces."
+      description="Learn about Suraj Raut: a BSc CSIT student and frontend developer from Damak, Jhapa, Nepal. Focused on React.js, Tailwind CSS, and building real-world interfaces."
     >
       <section className="section">
         <div className="container">
@@ -97,11 +97,11 @@ const About = () => {
               </h2>
 
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                I'm Suraj Raut — a frontend-focused web developer and BSc CSIT student at Central Campus of Technology, Dharan. I grew up in Damak, Jhapa, and spend most of my time building UIs that are clean, accessible, and actually pleasant to use.
+                I'm Suraj Raut, a frontend-focused web developer and BSc CSIT student at Central Campus of Technology, Dharan. I grew up in Damak, Jhapa, and spend most of my time building UIs that are clean, accessible, and actually pleasant to use.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                My strongest area is the frontend: React.js, Tailwind CSS, HTML/CSS, and JavaScript are where I'm most comfortable. I understand backend concepts — I can read, write, and vibe-code Node.js + Express APIs — but I won't pretend I'm a senior backend engineer. I'm being honest about where I am and actively improving.
+                My strongest area is the frontend: React.js, Tailwind CSS, HTML/CSS, and JavaScript are where I'm most comfortable. I understand backend concepts. I can read, write, and vibe-code, and find out bugs in Node.js + Express APIs, but I won't pretend I'm a senior backend engineer. I'm being honest about where I am and actively improving.
               </p>
 
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
